@@ -290,23 +290,9 @@ def main():
                 reward_list_agent_1.append(sum_rewards_agent_1)
 
 
-            # self play algorithm
-            if np.mean(reward_list_agent_1[-10:] + reward_list_agent_3[-10:]) >= threshold and np.mean(reward_list_agent_1[-10:] + reward_list_agent_3[-10:]) > np.mean(
-                    reward_list_agent_2[-10:] + reward_list_agent_4[-10:]):
-                print('Updating Weight...')
-                sess.run(update_weights_agent_2)
-                sess.run(update_weights_agent_4)
-                threshold += 0.2
-                print(f'The new threshold is {threshold}')
 
-                saver_new_model_1.save(sess, saving_path + '/model-agent_1_' + str(i) + '.ckpt')
-                saver_new_model_3.save(sess, saving_path + '/model-agent_3_' + str(i) + '.ckpt')
-                print("Saved Model")
 
-                myBuffer_1 = experience_buffer()
-                myBuffer_3 = experience_buffer()
-
-            # Alternative self play algorithm
+            # Self play algorithm
             if len(reward_list_agent_1) > 20:
 
                 if np.mean(reward_list_agent_1[-20:] + reward_list_agent_3[-20:]) > np.mean(

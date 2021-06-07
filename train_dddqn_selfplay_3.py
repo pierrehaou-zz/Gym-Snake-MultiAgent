@@ -234,21 +234,7 @@ def main():
                 reward_list_agent_2.append(sum_rewards_agent_2)
                 reward_list_agent_1.append(sum_rewards_agent_1)
 
-            # The self-play algorithm.
-            if np.mean(reward_list_agent_1[-10:]) >= threshold and np.mean(reward_list_agent_1[-10:]) > np.mean(
-                    reward_list_agent_2[-10:]) and np.mean(reward_list_agent_1[-10:]) > np.mean(
-                reward_list_agent_3[-10:]):
-                print('Updating Weight...')
-                sess.run(update_weights)
-                sess.run(update_weights_agent_3)
-                threshold += 0.2
-                print(f'The new threshold is {threshold}')
-
-                saver_new_model.save(sess, saving_path + '//model-agent_' + str(i) + '.ckpt')
-                print("Saved Model")
-                myBuffer = experience_buffer()
-
-            # Additional save and update weights point
+            # self-play algorithm
             if len(reward_list_agent_1) > 20:
 
                 if np.mean(reward_list_agent_1[-20:]) > np.mean(reward_list_agent_2[-20:]) and np.mean(
@@ -258,6 +244,7 @@ def main():
                     sess.run(update_weights_agent_3)
                     saver_new_model.save(sess, saving_path + '//model-agent_' + str(i) + '.ckpt')
                     print("Saved Model")
+                    myBuffer = experience_buffer()
 
             # Periodically print performance of agents "step, most current mean reward, current explore rate"
             if len(reward_list_agent_2) % 10 == 0:
