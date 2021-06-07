@@ -2,9 +2,10 @@
 
 ![Image of Snakes](imgs/snake_rickmorty.png)
 
-This repo is in response to OpenAI's Request for Research 2.0. https://openai.com/blog/requests-for-research-2/
+This repo is in response to OpenAI's Request for Research 2.0: https://openai.com/blog/requests-for-research-2/
 
-In this repo you will find four experiments--a single agent snake experiment and three multi agent experiments. The multi
+Gym-Snake-MultiAgent is an OpenAI gym environment for reinforcement learning. Here you will find single and multi
+agent environments. Also, this repo has four experiments--a single agent snake experiment and three multi agent experiments. The multi
 agent experiments include: a three agent snake game, a two agent snake game, and a 2 v 2 snake game. 
 All learning in the multi agent experiments is _attempted_ through self-play.
 
@@ -77,6 +78,7 @@ As of now, the single snake experiment is the only success.
 These games follow the conventional rules of snake. A snake can move anywhere on the grid. If it encounters a wall, itself,
 or another snake, it dies. The goal of the game is to gather as many fruits as possible without encountering one’s body or the wall. 
 There is an exception in 2 v 2 Multi Agent Snake. In this variant of the game teammates can pass through one another.
+Teammates are of similar color (the two blue snakes are on one team, the pinkish snakes on the other)
 
 ##### Reward Scheme
 A Snake receives +1 for eating a fruit, -1 for dying, and -0.03 for every step it takes in the environment. 
